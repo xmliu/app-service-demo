@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 引入包  -->
+    <context:component-scan base-package="com.xmliu.appservice"/>
+
+    <!-- 自动装配 -->
+    <context:annotation-config/>
+
+    <!-- 视图 webapps目录下-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    <!-- 上传文件配置 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- Maximum file size: 10MB -->
+        <!-- 1MB = 125000 Byte -->
+        <property name="maxUploadSize" value="1250000"/>
+        <!-- 防止上传文件中文乱码 -->
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+
+</beans>

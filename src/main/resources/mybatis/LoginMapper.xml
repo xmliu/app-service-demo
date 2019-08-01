@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<mapper namespace="com.xmliu.appservice.mapper.LoginMapper">
+
+    <select id="loadUserList" parameterType="java.util.Map" resultType="com.xmliu.appservice.entity.LoginBean">
+        select * from user
+    </select>
+
+    <select id="loginUser" parameterType="java.util.Map" resultType="com.xmliu.appservice.entity.LoginBean">
+        select * from user where name = #{name} and password = #{password}
+    </select>
+   <select id="findUserByName" parameterType="java.util.Map" resultType="com.xmliu.appservice.entity.LoginBean">
+        select * from user where name = #{name}
+    </select>
+    <insert id="addUser"  useGeneratedKeys="true" keyProperty="id" >
+        insert into user(id,name,password)  values(#{id},#{name},#{password})
+    </insert>
+</mapper>
